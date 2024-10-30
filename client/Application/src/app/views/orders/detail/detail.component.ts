@@ -38,7 +38,7 @@ export class DetailComponent implements OnInit {
   }
 
   tenantName() {
-    return '';
+    return localStorage.getItem('tenantName');
   }
 
   sum(op: OrderProduct) {
