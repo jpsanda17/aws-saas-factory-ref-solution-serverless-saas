@@ -40,9 +40,10 @@
           </thead>
           <tbody>
             <tr *ngFor="let op of orderProducts$ | async">
-              <td class="nowrap">
-                {{ op.productId }}
+              <td class="text-right">
+                <span class="mono">{{ productName(op) }}</span>
                 <br />
+                <small class="text-muted">{{ op.productId }}</small>
               </td>
               <td class="text-right">
                 <span class="mono">{{ op.price | currency }}</span>

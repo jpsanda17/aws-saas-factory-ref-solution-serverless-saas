@@ -9,6 +9,8 @@ import { map, switchMap } from 'rxjs/operators';
 import { Order } from '../models/order.interface';
 import { OrderProduct } from '../models/orderproduct.interface';
 import { OrdersService } from '../orders.service';
+import { Product } from '../../products/models/product.interface';
+import { ProductService } from '../../products/product.service';
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -18,13 +20,17 @@ export class DetailComponent implements OnInit {
   orderId$: Observable<string> | undefined;
   order$: Observable<Order> | undefined;
   orderProducts$: Observable<OrderProduct[]> | undefined;
+  productData: Product[] = [];
   taxRate = 0.0899;
-  constructor(private route: ActivatedRoute, private orderSvc: OrdersService) {}
+  constructor(private route: ActivatedRoute, private orderSvc: OrdersService, private prodSvc: ProductService) {}
 
   ngOnInit(): void {
     this.orderId$ = this.route.params.pipe(map((o) => o['orderId']));
     this.order$ = this.orderId$.pipe(switchMap((o) => this.orderSvc.get(o)));
     this.orderProducts$ = this.order$.pipe(map((o) => o.orderProducts));
+    this.prodSvc.fetch().subscribe((data) => {
+      this.productData = data;
+    });
   }
 
   today() {
@@ -59,5 +65,10 @@ export class DetailComponent implements OnInit {
 
   final(order: Order) {
     return this.subTotal(order) + this.calcTax(order);
+  }
+
+  productName(op: OrderProduct) {
+    return this.productData
+      .find((prod) => prod.productId === op.productId)?.name;
   }
 }
