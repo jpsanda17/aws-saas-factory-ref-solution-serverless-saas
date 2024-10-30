@@ -11,6 +11,8 @@ import { OrderProduct } from '../models/orderproduct.interface';
 import { OrdersService } from '../orders.service';
 import { Product } from '../../products/models/product.interface';
 import { ProductService } from '../../products/product.service';
+import { TAX_RATE } from 'src/app/shared/constants';
+
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -21,7 +23,8 @@ export class DetailComponent implements OnInit {
   order$: Observable<Order> | undefined;
   orderProducts$: Observable<OrderProduct[]> | undefined;
   productData: Product[] = [];
-  taxRate = 0.0899;
+  taxRate = TAX_RATE;
+  formatTaxRate = parseFloat((this.taxRate * 100).toFixed(2)).toString();
   constructor(private route: ActivatedRoute, private orderSvc: OrdersService, private prodSvc: ProductService) {}
 
   ngOnInit(): void {
