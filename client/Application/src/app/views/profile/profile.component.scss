@@ -1,0 +1,20 @@
+.profile {
+  margin: 20px;
+}
+
+.profile-row {
+  display: flex;
+  margin: 8px 0;
+  align-items: center;
+}
+
+.profile-key {
+  font-weight: bold;
+  padding: 8px;
+  width: 30%;
+}
+
+.profile-value {
+  padding: 8px;
+  width: 70%;
+}

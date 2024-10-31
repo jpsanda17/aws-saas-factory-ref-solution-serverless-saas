@@ -26,6 +26,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NavComponent } from './nav/nav.component';
 import { AuthComponent } from './views/auth/auth.component';
+import { ProfileComponent } from './views/profile/profile.component';
 import { httpInterceptorProviders } from './interceptors';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -40,6 +41,7 @@ import { MatTableModule } from '@angular/material/table';
     AppComponent,
     NavComponent,
     AuthComponent,
+    ProfileComponent,
     UnauthorizedComponent,
   ],
   imports: [

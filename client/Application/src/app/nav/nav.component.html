@@ -55,7 +55,7 @@
         </ng-template>
         <span style="margin: 8px">{{ (username$ | async) || user.username}}</span>
         <mat-divider></mat-divider>
-        <button mat-menu-item>
+        <button routerLink="/profile" mat-menu-item>
           <mat-icon class="material-symbols-outlined">face</mat-icon>
           <span>Profile</span>
         </button>

@@ -1,0 +1,15 @@
+<div class="profile">
+  <h2>Profile</h2>
+  <mat-card class="card">
+    <div class="col-md-6">
+      <div *ngIf="userProfile$ | async as userProfile">
+        <div *ngFor="let key of userProfileKeys">
+          <div class="profile-row">
+            <strong class="profile-key">{{ displayLabels[key] }}:</strong>
+            <span class="profile-value">{{ userProfile[key] }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>
