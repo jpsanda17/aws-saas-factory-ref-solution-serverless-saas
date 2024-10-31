@@ -11,7 +11,7 @@ import { ProductService } from '../product.service';
 export class ListComponent implements OnInit {
   productData: Product[] = [];
   isLoading: boolean = true;
-  displayedColumns: string[] = ['name', 'price', 'sku'];
+  displayedColumns: string[] = ['name', 'price', 'sku', 'delete'];
 
   constructor(private productSvc: ProductService, private router: Router) {}
 
@@ -28,11 +28,19 @@ export class ListComponent implements OnInit {
   }
 
   onRemove(product: Product) {
-    this.productSvc.delete(product);
-    this.isLoading = true;
-    this.productSvc.fetch().subscribe((data) => {
-      this.productData = data;
-      this.isLoading = false;
+    this.productSvc.delete(product).subscribe({
+      next: () => {
+        console.log('Product deleted successfully:', product.name, product.productId);
+        this.isLoading = true;
+        this.productSvc.fetch().subscribe((data) => {
+          this.productData = data;
+          this.isLoading = false;
+        });
+      },
+      error: (err) => {
+        console.error('Error deleting product:', err);
+        this.isLoading = false;
+      }
     });
   }
 

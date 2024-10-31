@@ -23,9 +23,9 @@ export class ProductService {
     return this.http.get<Product>(url);
   }
 
-  delete(product: Product) {
+  delete(product: Product): Observable<void> {
     const url = `${this.baseUrl}/${product.shardId}:${product.productId}`;
-    return this.http.delete<Product>(url);
+    return this.http.delete<void>(url);
   }
 
   put(product: Product) {
