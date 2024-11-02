@@ -40,9 +40,10 @@
           </thead>
           <tbody>
             <tr *ngFor="let op of orderProducts$ | async">
-              <td class="nowrap">
-                {{ op.productId }}
+              <td class="text-right">
+                <span class="mono">{{ productName(op) }}</span>
                 <br />
+                <small class="text-muted">{{ op.productId }}</small>
               </td>
               <td class="text-right">
                 <span class="mono">{{ op.price | currency }}</span>
@@ -62,7 +63,7 @@
               <td class="text-right nowrap">
                 <span class="mono">{{ tax(op) | currency }}</span>
                 <br />
-                <small class="text-muted">Sales Tax 8.9%</small>
+                <small class="text-muted">Sales Tax {{ formatTaxRate }}%</small>
               </td>
               <td class="text-right">
                 <strong class="mono">{{ total(op) | currency }}</strong>

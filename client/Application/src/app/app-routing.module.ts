@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NavComponent } from './nav/nav.component';
 import { AuthComponent } from './views/auth/auth.component';
+import { ProfileComponent } from './views/profile/profile.component';
 import { UnauthorizedComponent } from './views/error/unauthorized.component';
 import { CognitoGuard } from './cognito.guard';
 
@@ -19,6 +20,10 @@ export const routes: Routes = [
       title: 'Home',
     },
     children: [
+      {
+        path: 'profile',
+        component: ProfileComponent,
+      },
       {
         path: 'auth/info',
         component: AuthComponent,
